@@ -47,3 +47,8 @@ yarn install
 ```powershell
 yarn start
 ```
+
+
+#### やったことのメモ
+1.yarn upgrade --latestでパッケージを最新にしました。(done)
+2.
