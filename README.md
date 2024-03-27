@@ -59,3 +59,16 @@ yarn start
 #### やったことのメモ
 
 1.yarn upgrade --latestでパッケージを最新にしました。(done) 2.
+
+#### やることリスト
+
+- react-router-domをアップデートしたせいで、大量のエラーが出ているので、それを解消する
+- とりまESLintとPrettierはOK(だったはず)
+
+#### メモ
+
+- EditTask.jsx
+- NewList.jsx
+- SignIn.jsx
+- SignUp.jsx
+- Router.jsx

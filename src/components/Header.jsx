@@ -1,24 +1,39 @@
 import React from "react";
 import { useCookies } from "react-cookie";
-import { useSelector, useDispatch } from "react-redux/es/exports";
-import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { signOut } from "../authSlice";
-import "./header.css";
+import "./header.scss";
 
+// Header コンポーネント
 export const Header = () => {
+  // Reduxの状態とディスパッチの取得
   const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
-  const history = useHistory();
-  const [cookies, setCookie, removeCookie] = useCookies();
+
+  // React Routerのナビゲーションフックを取得
+  const navigate = useNavigate();
+
+  // Cookieフックを使用してクッキーの取得と削除
+  const [_, setCookie, removeCookie] = useCookies(); // eslint-disable-line
+
+  // サインアウト処理
   const handleSignOut = () => {
+    // Reduxのアクションをディスパッチしてサインアウト状態に変更
     dispatch(signOut());
+
+    // クッキーの削除
     removeCookie("token");
-    history.push("/signin");
+
+    // サインインページにリダイレクト
+    navigate("/signin");
   };
 
+  // JSXを返す
   return (
     <header className="header">
       <h1>Todoアプリ</h1>
+      {/* 認証済みの場合はサインアウトボタンを表示 */}
       {auth ? (
         <button onClick={handleSignOut} className="sign-out-button">
           サインアウト

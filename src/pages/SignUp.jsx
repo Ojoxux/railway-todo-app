@@ -2,24 +2,30 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, Redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { signIn } from "../authSlice";
 import { Header } from "../components/Header";
 import { url } from "../const";
-import "./signUp.css";
+import "./signUp.scss";
 
+// SignUp コンポーネント
 export const SignUp = () => {
-  const history = useHistory();
+  // React RouterのナビゲーションフックとReduxの状態およびディスパッチの取得
+  const navigate = useNavigate();
   const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
+
+  // Stateの初期化
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessge] = useState();
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [errorMessage, setErrorMessge] = useState("");
+  const [cookies, setCookie, removeCookie] = useCookies(); // eslint-disable-line
+
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handleNameChange = (e) => setName(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
+
   const onSignUp = () => {
     const data = {
       email: email,
@@ -33,43 +39,57 @@ export const SignUp = () => {
         const token = res.data.token;
         dispatch(signIn());
         setCookie("token", token);
-        history.push("/");
+        navigate("/");
       })
       .catch((err) => {
         setErrorMessge(`サインアップに失敗しました。 ${err}`);
       });
 
-    if (auth) return <Redirect to="/" />;
+    if (auth) <navigate to="/" />;
   };
+
+  // JSXを返す
   return (
     <div>
+      {/* ヘッダーコンポーネントの表示 */}
       <Header />
       <main className="signup">
         <h2>新規作成</h2>
+        {/* エラーメッセージの表示 */}
         <p className="error-message">{errorMessage}</p>
+        {/* サインアップフォーム */}
         <form className="signup-form">
-          <label>メールアドレス</label>
+          <label htmlFor="emailid">メールアドレス</label>
           <br />
           <input
             type="email"
+            id="emailid"
+            name="email"
             onChange={handleEmailChange}
             className="email-input"
+            autoComplete="email" // メールアドレスの入力欄なので email を指定
           />
           <br />
-          <label>ユーザ名</label>
+          <label htmlFor="textid">ユーザ名</label>
           <br />
           <input
             type="text"
+            id="textid"
+            name="text"
             onChange={handleNameChange}
             className="name-input"
+            autoComplete="username"
           />
           <br />
-          <label>パスワード</label>
+          <label htmlFor="passid">パスワード</label>
           <br />
           <input
             type="password"
+            id="passid"
+            name="password"
             onChange={handlePasswordChange}
             className="password-input"
+            autoComplete="new-password"
           />
           <br />
           <button type="button" onClick={onSignUp} className="signup-button">

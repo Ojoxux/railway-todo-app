@@ -8,6 +8,7 @@
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
     "axios": "^1.6.8",
+    "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-cookie": "^7.1.0",
     "react-dom": "^18.2.0",
@@ -28,7 +29,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint .",
+    "lint": "eslint --ext \".js,.jsx\" --ignore-path .gitignore . --fix",
     "format": "prettier --write ."
   },
   "eslintConfig": {
