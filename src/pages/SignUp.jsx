@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
@@ -6,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { signIn } from "../authSlice";
 import { Header } from "../components/Header";
 import { url } from "../const";
-import "./signUp.scss";
+import "./styles/signUp.scss";
 
 // SignUp コンポーネント
 export const SignUp = () => {
@@ -20,8 +21,9 @@ export const SignUp = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessge] = useState("");
-  const [cookies, setCookie, removeCookie] = useCookies(); // eslint-disable-line
+  const [cookies, setCookie, removeCookie] = useCookies();
 
+  // イベントハンドラーの定義
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handleNameChange = (e) => setName(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
