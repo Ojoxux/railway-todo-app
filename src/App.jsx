@@ -1,12 +1,16 @@
 import React from "react";
 import "./App.scss";
 import { Router } from "./routes/Router";
+import { UIProvider } from "@yamada-ui/react";
+//import { UIProvider } from "@yamada-ui/react";
 
 function App() {
   return (
-    <div className="App">
-      <Router />
-    </div>
+    <UIProvider>
+      <div className="App">
+        <Router />
+      </div>
+    </UIProvider>
   );
 }
 

@@ -7,6 +7,7 @@ import "./styles/signin.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../authSlice";
 import { url } from "../const";
+import { Button } from "@yamada-ui/react";
 
 // SignIn コンポーネント
 export const SignIn = () => {
@@ -96,6 +97,11 @@ export const SignIn = () => {
           <button type="button" className="signin-button" onClick={onSignIn}>
             サインイン
           </button>
+          <Button
+            size="sm"
+            backgroundColor="lime.500"
+            color="lime.900"
+          ></Button>
         </form>
         {/* 新規作成へのリンク */}
         <Link to="/signup">新規作成</Link>

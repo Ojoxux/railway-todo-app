@@ -78,15 +78,19 @@ export const NewTask = () => {
     // 期限日時を取得
     const deadlineDate = new Date(limit);
     // 日本時間に変換
+    //計算式: deadlineDateの時間に9時間足す
     deadlineDate.setHours(deadlineDate.getHours() + 9);
     console.log(deadlineDate);
 
     // 残り時間を計算
+    // 計算式: 期限日時 - 現在時刻
     const differenceInMilliseconds = deadlineDate - now;
 
     // 残り時間を日、時間、分に変換
+    // 計算式: 残り時間 / (1000ミリ秒 * 60秒 * 60分 * 24時間)
     const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
     // 残り時間を日に変換
+    // 計算式: 残り時間 % (1000ミリ秒 * 60秒 * 60分 * 24時間) / (1000ミリ秒 * 60秒 * 60分)
     const hours = Math.floor(
       (differenceInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
     );
@@ -158,7 +162,7 @@ export const NewTask = () => {
 
           {/* タスク作成ボタン */}
           <button
-            type="submit"
+            type="button"
             className="new-task-button"
             onClick={onCreateTask}
           >

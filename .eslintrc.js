@@ -10,7 +10,7 @@ module.exports = {
     "plugin:prettier/recommended",
   ],
   parserOptions: {
-    ecmaVersion: 13,
+    ecmaVersion: 2022,
     sourceType: "module",
   },
   plugins: ["prettier", "react", "react-hooks"],

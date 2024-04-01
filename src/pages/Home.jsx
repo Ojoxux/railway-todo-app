@@ -6,6 +6,7 @@ import { Header } from "../components/Header";
 import { url } from "../const";
 import "./styles/home.scss";
 import PropTypes from "prop-types";
+import { Button } from "@yamada-ui/react";
 
 // Home コンポーネント
 export const Home = () => {
@@ -97,6 +98,7 @@ export const Home = () => {
             </div>
           </div>
           {/* リストタブ */}
+          {/* list-tabにroleを持たせるといい */}
           <ul className="list-tab">
             {lists.map((list, key) => {
               const isActive = list.id === selectListId;
@@ -119,6 +121,8 @@ export const Home = () => {
               );
             })}
           </ul>
+
+          <Button>ぼたん</Button>
           <div className="tasks">
             <div className="tasks-header">
               <h2>タスク一覧</h2>
